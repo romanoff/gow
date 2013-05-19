@@ -3,6 +3,7 @@ package main
 import (
 	"io/ioutil"
 	"log"
+	"sync"
 )
 
 func main() {
@@ -14,10 +15,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	wg := &sync.WaitGroup{}
 	for name, rule := range conf.Rules {
+		wg.Add(1)
 		err = rule.watch(name)
 		if err != nil {
 			log.Fatal(err)
 		}
 	}
+	wg.Wait()
 }
