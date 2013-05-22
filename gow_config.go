@@ -39,9 +39,9 @@ func (self *rule) watch(name string) error {
 	if err != nil {
 		return err
 	}
-	go func() {
-		self.handleEvents()
-	}()
+	go func(r rule) {
+		r.handleEvents()
+	}(*self)
 	return nil
 }
 
