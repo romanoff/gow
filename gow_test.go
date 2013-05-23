@@ -9,6 +9,7 @@ var testData string = `
   [rules.sass]
   pattern="*.sass,*.css"
   command="make regenerate_css"
+  ignored_folders=".git"
 
   [rules.js]
   path="/path/to/folder/with/javascripts"
